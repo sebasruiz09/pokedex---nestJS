@@ -71,8 +71,10 @@ export class PokemonService {
     }
   }
 
-  remove(no: string) {
-    return this.pokemonModel.remove({ no: no });
+  async remove(id: string) {
+    return { id };
+    // const pokemon = await this.findOne(id);
+    // await pokemon.deleteOne();
   }
 
   //handler exepction is a function for handler unique index error
