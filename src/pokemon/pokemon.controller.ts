@@ -1,6 +1,7 @@
 import {
   Controller,
   Get,
+  Query,
   Post,
   Body,
   Patch,
@@ -13,6 +14,7 @@ import { PokemonService } from './pokemon.service';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 import { ParseMongoidPipe } from 'src/common/pipes/parse-mongoid.pipe';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Controller('pokemon')
 export class PokemonController {
@@ -27,15 +29,14 @@ export class PokemonController {
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  findAll() {
-    return this.pokemonService.findAll();
+  findAll(@Query() queryParams: PaginationDto) {
+    return this.pokemonService.findAll(queryParams);
   }
 
   @Get(':term')
   findOne(@Param('term') term: string) {
     return this.pokemonService.findOne(term);
   }
-
   @Patch(':term')
   update(
     @Param('term') term: string,
@@ -49,3 +50,4 @@ export class PokemonController {
     return this.pokemonService.remove(id);
   }
 }
+
