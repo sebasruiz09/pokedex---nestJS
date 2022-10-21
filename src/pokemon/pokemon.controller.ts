@@ -12,7 +12,7 @@ import {
 import { PokemonService } from './pokemon.service';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
-import { ParseMongoidPipe } from 'src/commom/pipes/parse-mongoid.pipe';
+import { ParseMongoidPipe } from 'src/common/pipes/parse-mongoid.pipe';
 
 @Controller('pokemon')
 export class PokemonController {
