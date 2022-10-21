@@ -50,4 +50,3 @@ export class PokemonController {
     return this.pokemonService.remove(id);
   }
 }
-
