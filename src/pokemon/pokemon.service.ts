@@ -72,9 +72,12 @@ export class PokemonService {
   }
 
   async remove(id: string) {
-    return { id };
-    // const pokemon = await this.findOne(id);
+    // validate a mongoID in database
+    const { deletedCount } = await this.pokemonModel.deleteOne({ _id: id });
+    if (deletedCount === 0)
+      throw new NotFoundException(`Pokemon id : ${id} not found`);
     // await pokemon.deleteOne();
+    return true;
   }
 
   //handler exepction is a function for handler unique index error
