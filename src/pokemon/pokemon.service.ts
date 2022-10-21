@@ -81,12 +81,11 @@ export class PokemonService {
   }
 
   //handler exepction is a function for handler unique index error
-  private handlerExeption(error: any) {
+  handlerExeption(error: any) {
     if (error.code === 11000)
       throw new BadRequestException(
         `Pokemon already exists in db ${JSON.stringify(error.keyValue)}`,
       );
-    console.log(error);
     throw new InternalServerErrorException(error);
   }
 }
