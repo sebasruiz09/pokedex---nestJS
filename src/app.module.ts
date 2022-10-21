@@ -6,10 +6,15 @@ import { ConfigModule } from '@nestjs/config';
 import { PokemonModule } from './pokemon/pokemon.module';
 import { CommonModule } from './common/common.module';
 import { SeedModule } from './seed/seed.module';
+import { EnvConfiguration } from './config/app.config';
+import { JoiValidationSchema } from './config/joi.validation';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      load: [EnvConfiguration],
+      validationSchema: JoiValidationSchema,
+    }),
     //yarn add @nestjs/serve-static
     // to render static file in the browser
     ServeStaticModule.forRoot({
@@ -24,8 +29,4 @@ import { SeedModule } from './seed/seed.module';
     SeedModule,
   ],
 })
-export class AppModule {
-  constructor() {
-    console.log(process.env);
-  }
-}
+export class AppModule {}
